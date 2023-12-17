@@ -32,6 +32,7 @@ module "ec2" {
   availability_zone           = element(local.azs, 0)
   vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
+
   user_data = templatefile("${path.module}/server_setup.sh.tftpl", {
     beamMP_auth_key           = var.beamMP_auth_key, beamMP_map = var.beamMP_map,
     beamMP_server_name        = var.beamMP_server_name,
