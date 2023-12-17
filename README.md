@@ -1,11 +1,18 @@
 # tf-beamMP-server-module
 Terraform module to deploy a BeamMP server to AWS
 
-# Pre-commit config
+# Usage
 
+## Pre-commit config
+
+Install dependencies for pre-commit.
 ```
 brew install pre-commit terraform-docs tflint tfsec
 ```
+
+## To Do
+
+- Add support for running on spot instances
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
