@@ -43,6 +43,13 @@ module "ec2" {
     beamMP_private            = var.beamMP_private
   })
 
+  root_block_device = [
+    {
+      volume_size = var.ec2_ebs_volume_size
+      volume_type = "gp3"
+    }
+  ]
+
   tags = local.tags
 
   iam_instance_profile = "ssm-instance-profile"

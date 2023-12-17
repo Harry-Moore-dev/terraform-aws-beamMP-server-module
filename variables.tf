@@ -10,6 +10,12 @@ variable "ec2_instance_type" {
   default     = "t3.small"
 }
 
+variable "ec2_ebs_volume_size" {
+  type        = number
+  description = "ec2 ebs volume size"
+  default     = 8
+}
+
 variable "vpc_subnet_cidr_block" {
   type        = string
   description = "value of the vpc cidr block for the public subnet"

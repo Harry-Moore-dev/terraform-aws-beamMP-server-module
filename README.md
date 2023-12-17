@@ -88,6 +88,7 @@ brew install pre-commit terraform-docs tflint tfsec
 | <a name="input_beamMP_private"></a> [beamMP\_private](#input\_beamMP\_private) | BeamMP config set the server to private or not | `bool` | `true` | no |
 | <a name="input_beamMP_server_description"></a> [beamMP\_server\_description](#input\_beamMP\_server\_description) | BeamMP config server description | `string` | `"BeamMP Server created by Terraform"` | no |
 | <a name="input_beamMP_server_name"></a> [beamMP\_server\_name](#input\_beamMP\_server\_name) | BeamMP config server name | `string` | `"BeamMP Server created by Terraform"` | no |
+| <a name="input_ec2_ebs_volume_size"></a> [ec2\_ebs\_volume\_size](#input\_ec2\_ebs\_volume\_size) | ec2 ebs volume size | `number` | `8` | no |
 | <a name="input_ec2_instance_type"></a> [ec2\_instance\_type](#input\_ec2\_instance\_type) | ec2 instance type | `string` | `"t3.small"` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | `"eu-west-2"` | no |
 | <a name="input_vpc_subnet_cidr_block"></a> [vpc\_subnet\_cidr\_block](#input\_vpc\_subnet\_cidr\_block) | value of the vpc cidr block for the public subnet | `string` | `"172.31.0.0/16"` | no |
