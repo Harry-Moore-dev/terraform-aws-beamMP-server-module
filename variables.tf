@@ -19,6 +19,7 @@ variable "vpc_subnet_cidr_block" {
 variable "beamMP_auth_key" {
   type        = string
   description = "BeamMP config auth key"
+  sensitive   = true
 }
 
 variable "beamMP_map" {

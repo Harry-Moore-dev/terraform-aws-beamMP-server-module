@@ -3,6 +3,34 @@ Terraform module to deploy a BeamMP server to AWS
 
 # Usage
 
+Simple example:
+```hcl
+module "beamMP_server" {
+  source = "github.com/Harry-Moore-dev/tf-beamMP-server-module"
+
+  beamMP_auth_key           = var.beamMP_auth_key # Should be loaded in as a secret and kept out of source control
+}
+```
+
+Detailed example:
+```hcl
+module "beamMP_server" {
+  source = "github.com/Harry-Moore-dev/tf-beamMP-server-module"
+
+  region            = "eu-west-1
+  ec2_instance_type = "t3.large"
+
+  beamMP_port               = 42069
+  beamMP_auth_key           = var.beamMP_auth_key # Should be loaded in as a secret and kept out of source control
+  beamMP_map                = "italy"
+  beamMP_server_name        = "Yet Another BeamMP Server"
+  beamMP_server_description = "Yet Another Server Description"
+  beamMP_max_cars           = 2
+  beamMP_max_players        = 10
+  beamMP_private            = false
+}
+```
+
 ## Pre-commit config
 
 Install dependencies for pre-commit.
@@ -13,6 +41,7 @@ brew install pre-commit terraform-docs tflint tfsec
 ## To Do
 
 - Add support for running on spot instances
+- Add support for loading mods from s3
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
