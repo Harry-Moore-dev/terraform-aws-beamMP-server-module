@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Install SSM agent
+sudo snap install amazon-ssm-agent --classic
+
+# Update package lists
+sudo apt update
+
+# Install liblua5.3-0 package
+sudo apt install -y liblua5.3-0
+
+# Change directory to the server folder
+cd /usr/local
+mkdir beamMPserver
+cd beamMPserver
+
+# Download the latest version of the ubuntu server build
+wget $(curl -s https://api.github.com/repos/BeamMP/BeamMP-Server/releases/latest | grep "browser_download_url.*BeamMP-Server-ubuntu" | cut -d : -f 2,3 | tr -d \")
+
+# Make the server executable
+chmod +x BeamMP-Server-ubuntu
+
+# Create config file
+echo """
+[General]
+AuthKey = '${beamMP_auth_key}'
+Debug = false
+Description = '${beamMP_server_description}'
+Map = '/levels/${beamMP_map}/info.json'
+MaxCars = ${beamMP_max_cars}
+MaxPlayers = ${beamMP_max_players}
+Name = '${beamMP_server_name}'
+Port = ${beamMP_port}
+Private = ${beamMP_private}
+ResourceFolder = 'Resources'
+""" > ServerConfig.toml
+
+# Run the server in the background
+nohup ./BeamMP-Server-ubuntu &
+./BeamMP-Server-linux
