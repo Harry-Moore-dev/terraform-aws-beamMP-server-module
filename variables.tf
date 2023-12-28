@@ -78,6 +78,6 @@ variable "beamMP_modded" {
 
 variable "beamMP_mod_s3_bucket_path" {
   type        = string
-  description = "S3 bucket path containing the zipped mod files (Potential security risk, only specify buckets in your control!)"
+  description = "S3 bucket name and path containing the zipped mod files (Potential security risk, only specify buckets in your control!)"
   default     = ""
 }

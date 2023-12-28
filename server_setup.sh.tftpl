@@ -24,8 +24,8 @@ wget $(curl -s https://api.github.com/repos/BeamMP/BeamMP-Server/releases/latest
 chmod +x BeamMP-Server-ubuntu
 
 # If mods enabled, copy the mods from s3
-if [${beamMP_modded} = 'true']
-aws s3 cp --recursive s3://myBucket/dir localdir
+if [ ${beamMP_modded} = 'true' ]; then
+    aws s3 cp --recursive s3://${beamMP_mod_s3_bucket_path} Resources/Client
 fi
 
 # Create config file
