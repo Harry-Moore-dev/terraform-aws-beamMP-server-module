@@ -40,7 +40,9 @@ module "ec2" {
     beamMP_max_cars           = var.beamMP_max_cars,
     beamMP_max_players        = var.beamMP_max_players,
     beamMP_port               = var.beamMP_port,
-    beamMP_private            = var.beamMP_private
+    beamMP_private            = var.beamMP_private,
+    beamMP_modded             = var.beamMP_modded,
+    beamMP_mod_s3_bucket_path = var.beamMP_mod_s3_bucket_path
   })
 
   root_block_device = [
@@ -83,6 +85,36 @@ resource "aws_iam_role_policy_attachment" "ssm_policy_attachment" {
   role       = aws_iam_role.ssm_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
+
+resource "aws_iam_role_policy_attachment" "s3_read_policy_attachment" {
+  count      = var.beamMP_modded ? 1 : 0
+  role       = aws_iam_role.ssm_role.name
+  policy_arn = aws_iam_policy.s3_read_policy[0].arn
+}
+
+resource "aws_iam_policy" "s3_read_policy" {
+  count       = var.beamMP_modded ? 1 : 0
+  name        = "s3-read-policy"
+  description = "Policy for S3 read access"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid      = "S3ReadAccess"
+        Effect   = "Allow"
+        Action   = ["s3:GetObject"]
+        Resource = ["arn:aws:s3:::${var.beamMP_mod_s3_bucket_path}/*"]
+      },
+      {
+        Sid      = "S3ListBucketAccess"
+        Effect   = "Allow"
+        Action   = ["s3:ListBucket"]
+        Resource = ["arn:aws:s3:::*"]
+      }
+    ]
+  })
+}
+
 
 data "aws_ami" "ubuntu" {
   most_recent = true

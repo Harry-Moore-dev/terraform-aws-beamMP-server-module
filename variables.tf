@@ -69,3 +69,15 @@ variable "beamMP_private" {
   description = "BeamMP config set the server to private or not"
   default     = true
 }
+
+variable "beamMP_modded" {
+  type        = bool
+  description = "BeamMP server enable mods"
+  default     = false
+}
+
+variable "beamMP_mod_s3_bucket_path" {
+  type        = string
+  description = "S3 bucket name and path containing the zipped mod files (Potential security risk, only specify buckets in your control!)"
+  default     = ""
+}

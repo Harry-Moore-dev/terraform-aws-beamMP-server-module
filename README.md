@@ -70,7 +70,9 @@ brew install pre-commit terraform-docs tflint tfsec
 |------|------|
 | [aws_default_vpc.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc) | resource |
 | [aws_iam_instance_profile.ssm_instance_profile](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
+| [aws_iam_policy.s3_read_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.ssm_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy_attachment.s3_read_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.ssm_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_subnet.public_subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_ami.ubuntu](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
@@ -84,6 +86,8 @@ brew install pre-commit terraform-docs tflint tfsec
 | <a name="input_beamMP_map"></a> [beamMP\_map](#input\_beamMP\_map) | BeamMP config server map selected | `string` | `"gridmap_v2"` | no |
 | <a name="input_beamMP_max_cars"></a> [beamMP\_max\_cars](#input\_beamMP\_max\_cars) | BeamMP config maximum number of cars per allowed person | `number` | `1` | no |
 | <a name="input_beamMP_max_players"></a> [beamMP\_max\_players](#input\_beamMP\_max\_players) | BeamMP config maximum number of players | `number` | `5` | no |
+| <a name="input_beamMP_mod_s3_bucket_path"></a> [beamMP\_mod\_s3\_bucket\_path](#input\_beamMP\_mod\_s3\_bucket\_path) | S3 bucket name and path containing the zipped mod files (Potential security risk, only specify buckets in your control!) | `string` | `""` | no |
+| <a name="input_beamMP_modded"></a> [beamMP\_modded](#input\_beamMP\_modded) | BeamMP server enable mods | `bool` | `false` | no |
 | <a name="input_beamMP_port"></a> [beamMP\_port](#input\_beamMP\_port) | BeamMP config server port, also used in the security group rules | `number` | `30814` | no |
 | <a name="input_beamMP_private"></a> [beamMP\_private](#input\_beamMP\_private) | BeamMP config set the server to private or not | `bool` | `true` | no |
 | <a name="input_beamMP_server_description"></a> [beamMP\_server\_description](#input\_beamMP\_server\_description) | BeamMP config server description | `string` | `"BeamMP Server created by Terraform"` | no |
