@@ -19,6 +19,7 @@ module "beamMP_server" {
 
   region            = "eu-west-1
   ec2_instance_type = "t3.large"
+  ec2_ebs_volume_size = 8
 
   beamMP_port               = 42069
   beamMP_auth_key           = var.beamMP_auth_key # Should be loaded in as a secret and kept out of source control
@@ -28,8 +29,14 @@ module "beamMP_server" {
   beamMP_max_cars           = 2
   beamMP_max_players        = 10
   beamMP_private            = false
+  beamMP_modded             = true
+  beamMP_mod_s3_bucket_path = "examplebucket/mods"
 }
 ```
+
+### Loading mods
+
+Create an S3 bucket in your AWS account and load the mod zip files to a path of your choice. When mods are enabled in the server build and the path is provided, all mod files in that path will be copied over to the server on creation so sufficient ebs volume size should be specified depending on the size of the mods loaded.
 
 ## Pre-commit config
 
@@ -41,7 +48,6 @@ brew install pre-commit terraform-docs tflint tfsec
 ## To Do
 
 - Add support for running on spot instances
-- Add support for loading mods from s3
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
