@@ -16,6 +16,18 @@ variable "ec2_ebs_volume_size" {
   default     = 8
 }
 
+variable "ec2_spot_instance_price" {
+  type        = string
+  description = "ec2 spot instance price (adjust this for the instance type if using spot instances)"
+  default     = "0.01"
+}
+
+variable "ec2_spot_instance_enabled" {
+  type        = bool
+  description = "use ec2 spot instances (cheaper but can be terminated at any time)"
+  default     = false
+}
+
 variable "vpc_subnet_cidr_block" {
   type        = string
   description = "value of the vpc cidr block for the public subnet"
