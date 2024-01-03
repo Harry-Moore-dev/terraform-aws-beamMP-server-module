@@ -12,7 +12,7 @@ resource "aws_default_vpc" "default" {}
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_default_vpc.default.id
   cidr_block              = var.vpc_subnet_cidr_block
-  availability_zone       = element(local.azs, 0)
+  availability_zone       = element(local.azs, 2)
   map_public_ip_on_launch = true
 
   tags = local.tags
@@ -29,9 +29,13 @@ module "ec2" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.ec2_instance_type
   subnet_id                   = aws_subnet.public_subnet.id
-  availability_zone           = element(local.azs, 0)
+  availability_zone           = element(local.azs, 2)
   vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
+
+  create_spot_instance = var.ec2_spot_instance_enabled
+  spot_price           = var.ec2_spot_instance_enabled ? var.ec2_spot_instance_price : null
+  spot_type            = var.ec2_spot_instance_enabled ? "persistent" : null
 
   user_data = templatefile("${path.module}/server_setup.sh.tftpl", {
     beamMP_auth_key           = var.beamMP_auth_key, beamMP_map = var.beamMP_map,

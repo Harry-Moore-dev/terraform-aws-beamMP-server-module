@@ -17,9 +17,12 @@ Detailed example:
 module "beamMP_server" {
   source = "github.com/Harry-Moore-dev/tf-beamMP-server-module"
 
-  region            = "eu-west-1
-  ec2_instance_type = "t3.large"
+  region              = "eu-west-1
+  ec2_instance_type   = "t3.large"
   ec2_ebs_volume_size = 8
+
+  ec2_spot_instance_price   = "0.01"
+  ec2_spot_instance_enabled = true
 
   beamMP_port               = 42069
   beamMP_auth_key           = var.beamMP_auth_key # Should be loaded in as a secret and kept out of source control
@@ -44,10 +47,6 @@ Install dependencies for pre-commit.
 ```
 brew install pre-commit terraform-docs tflint tfsec
 ```
-
-## To Do
-
-- Add support for running on spot instances
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -100,6 +99,8 @@ brew install pre-commit terraform-docs tflint tfsec
 | <a name="input_beamMP_server_name"></a> [beamMP\_server\_name](#input\_beamMP\_server\_name) | BeamMP config server name | `string` | `"BeamMP Server created by Terraform"` | no |
 | <a name="input_ec2_ebs_volume_size"></a> [ec2\_ebs\_volume\_size](#input\_ec2\_ebs\_volume\_size) | ec2 ebs volume size | `number` | `8` | no |
 | <a name="input_ec2_instance_type"></a> [ec2\_instance\_type](#input\_ec2\_instance\_type) | ec2 instance type | `string` | `"t3.small"` | no |
+| <a name="input_ec2_spot_instance_enabled"></a> [ec2\_spot\_instance\_enabled](#input\_ec2\_spot\_instance\_enabled) | use ec2 spot instances (cheaper but can be terminated at any time) | `bool` | `false` | no |
+| <a name="input_ec2_spot_instance_price"></a> [ec2\_spot\_instance\_price](#input\_ec2\_spot\_instance\_price) | ec2 spot instance price (adjust this for the instance type if using spot instances) | `string` | `"0.01"` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | `"eu-west-2"` | no |
 | <a name="input_vpc_subnet_cidr_block"></a> [vpc\_subnet\_cidr\_block](#input\_vpc\_subnet\_cidr\_block) | value of the vpc cidr block for the public subnet | `string` | `"172.31.0.0/16"` | no |
 
