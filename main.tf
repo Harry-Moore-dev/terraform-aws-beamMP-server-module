@@ -33,9 +33,10 @@ module "ec2" {
   vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
 
-  create_spot_instance = var.ec2_spot_instance_enabled
-  spot_price           = var.ec2_spot_instance_enabled ? var.ec2_spot_instance_price : null
-  spot_type            = var.ec2_spot_instance_enabled ? "persistent" : null
+  create_spot_instance      = var.ec2_spot_instance_enabled
+  spot_price                = var.ec2_spot_instance_enabled ? var.ec2_spot_instance_price : null
+  spot_type                 = var.ec2_spot_instance_enabled ? "persistent" : null
+  spot_wait_for_fulfillment = var.ec2_spot_instance_enabled ? true : null
 
   user_data = templatefile("${path.module}/server_setup.sh.tftpl", {
     beamMP_auth_key           = var.beamMP_auth_key, beamMP_map = var.beamMP_map,
