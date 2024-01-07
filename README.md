@@ -6,7 +6,8 @@ Terraform module to deploy a BeamMP server to AWS
 Simple example:
 ```hcl
 module "beamMP_server" {
-  source = "github.com/Harry-Moore-dev/tf-beamMP-server-module"
+  source  = "Harry-Moore-dev/beamMP-server-module/aws"
+  version = "1.2.1"
 
   beamMP_auth_key           = var.beamMP_auth_key # Should be loaded in as a secret and kept out of source control
 }
@@ -15,7 +16,8 @@ module "beamMP_server" {
 Detailed example:
 ```hcl
 module "beamMP_server" {
-  source = "github.com/Harry-Moore-dev/tf-beamMP-server-module"
+  source  = "Harry-Moore-dev/beamMP-server-module/aws"
+  version = "1.2.1"
 
   region              = "eu-west-1
   ec2_instance_type   = "t3.large"
