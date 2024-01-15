@@ -62,7 +62,7 @@ brew install pre-commit terraform-docs tflint tfsec
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.31.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.1 |
 
 ## Modules
 
