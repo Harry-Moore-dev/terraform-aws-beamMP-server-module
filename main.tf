@@ -22,7 +22,7 @@ data "aws_availability_zones" "available" {}
 
 module "ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "5.6.0"
+  version = "5.6.1"
 
   name = local.name
 
